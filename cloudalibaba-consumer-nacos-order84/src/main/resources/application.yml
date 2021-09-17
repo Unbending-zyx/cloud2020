@@ -1,0 +1,27 @@
+server:
+  port: 84
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.81.31:3000 #端口为3000   原因是我使用nginx监控3000端口  转发到nacos集群
+    sentinel:
+      transport:
+        dashboard: 172.16.81.31:8080 #配置 Sentinel dashboard 地址 8080 sentinel控制台会监控8401这个微服务
+        #默认为8719端口 加入被占用 会自动从8719开始依次+1扫描，直至找到未被占用的端口
+        port: 8719
+        #        clientIp: 172.16.81.31
+        clientIp: 172.16.93.27 #填写当前服务运行的ip地址  防止sentinel控制台监控不到数据
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#消费者将邀请访问的微服务名称（出册成功进nacos的微服务提供者）
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+feign:
+  sentinel:
+    enabled: true #激活sentinel对feign的支持

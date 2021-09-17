@@ -1,0 +1,30 @@
+server:
+  port: 3366
+spring:
+  application:
+    name: cloud-client
+  cloud:
+    config:
+      label: main #使用的远端分支名  一般为master  此处我远端为main
+      name: config #远端文件的文件名    远端文件的一般命名格式为： 文件名-profile,yml   此处配置的就是文件名
+      profile: dev #远端文件的一般命名格式为： 文件名-profile,yml   此处配置的就是profile
+      uri: http://config3344.com:3344 #config 服务中心的地址
+  rabbitmq:
+    host: 172.16.81.31
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      #集群版搭建方式
+      #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      #单机版配置
+      defaultZone: http://eureka7001.com:7001/eureka
+management: #暴露监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,39 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Unbending-zyx/spring-cloud-config.git #github上git仓库的地址
+          search-paths: #搜索目录
+            - spring-cloud-config
+#          username: 411707537@qq.com   # git仓库的账号
+#          password:
+      label: main #所读取的分支
+  #rabbitmq 相关的配置
+  rabbitmq:
+    host: 172.16.81.31
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      #集群版搭建方式
+      #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      #单机版配置
+      defaultZone: http://eureka7001.com:7001/eureka
+
+
+
+#ribbitmq 相关设置，暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

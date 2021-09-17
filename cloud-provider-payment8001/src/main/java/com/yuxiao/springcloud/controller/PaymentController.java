@@ -1,6 +1,7 @@
 package com.yuxiao.springcloud.controller;
 
 import ch.qos.logback.core.util.TimeUtil;
+import cn.hutool.json.JSONObject;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import com.yuxiao.springcloud.entry.CommonResult;
@@ -80,5 +81,14 @@ public class PaymentController {
             e.printStackTrace();
         }
         return serverPort;
+    }
+
+    //失败了
+    @GetMapping(value = "/getEHSJ")
+    public String getEHSJ(@RequestBody Object obj){
+        JSONObject jsonObject=(JSONObject) obj;
+        System.out.println(jsonObject.get("msg"));
+        System.out.println(jsonObject.get("event"));
+        return "获取成功";
     }
 }

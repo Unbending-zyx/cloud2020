@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yuxiao.springcloud.dao.PaymentDao">
+<mapper namespace="com.yuxiao.com.yuxiao.springcloud.dao.PaymentDao">
 
     <!--创建payment 创建的xml-->
     <!--参数解释 id映射的是接口中的方法名
@@ -13,7 +13,7 @@
         insert into payment(serial) value (#{serial});
     </insert>
 
-    <resultMap id="PaymentBaseResultMap" type="com.yuxiao.springcloud.entry.Payment">
+    <resultMap id="PaymentBaseResultMap" type="com.yuxiao.com.yuxiao.springcloud.entry.Payment">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <id column="serial" property="serial" jdbcType="VARCHAR"/>
     </resultMap>
